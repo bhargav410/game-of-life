@@ -25,14 +25,14 @@
     shell: cp /tmp/{{vprofile_version}} /var/lib/tomcat/webapps
 
   - name: Delete link to existing vprofile version
-    file: path=/var/lib/tomcat/webapps/VProfile state=absent
+    file: path=/var/lib/tomcat/webapps/gameoflife state=absent
 
   - name: Start tomcat service
     service: name=tomcat state=started
   - wait_for: path=/var/lib/tomcat/webapps/{{time}}-{{build}}
 
   - name: Link latest vprofile version
-    file: src=/var/lib/tomcat/webapps/{{time}}-{{build}} dest=/var/lib/tomcat/webapps/VProfile state=link
+    file: src=/var/lib/tomcat/webapps/{{time}}-{{build}} dest=/var/lib/tomcat/webapps/gameoflife state=link
 
   - name: Stop iptables
     service: name=iptables state=stopped
